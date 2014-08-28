@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	table,th,td	{
+		border:1px solid black;
+	}
+	th{
+		background-color:gray;
+		color:white;
+	}
+	#towns
+	{
+	    border-collapse: collapse;
+	}
+	
+	#towns td 
+	{
+	    padding:0;
+	}	
+	#towns tr
+	{
+		background-color:lightyellow;
+	}
+	</style>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>testCrap</title>
+
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+	    $(document).ready(function() {
+	    	//Add Row
+			$("#btn3").bind( "click", function(event) {				
+				var n = Math.floor(Math.random() * 120) - 10;
+				n = n < 0 ? abs(n - 3) : n + 4;
+				//$("#towns").append("<tr><td>300</td><td>THREE</td><td>btn</td><tr>");
+				//$("#mytbody tr:last").append("<tr><td>THREE</td><td>"+n+"</td><td>btn</td><tr>");
+				
+				var rows = ($('#towns tr').length -1)/2 + 1;				
+				/////$("#towns tr:last").append("<tr><td>THREE</td><td>"+n+"</td><td>btn</td><td><input class='myHidden' type='text' value='" + rows +"'/></td><tr>");
+				$("#towns tr:last").append("<tr><td>THREE</td><td>"+n+"</td><td>btn</td><td><input class='myHidden' type='hidden' value='" + rows + "'/></td><tr>");
+				
+				//var rows = document.getElementById("towns").getElementsByTagName("tr").length;
+				//var rows = $('#mytbody > tr').length;
+				//var rows = $('#mytbody tr').length;
+				//$("#mytbody tr:last")
+				//$("#cntr").html(rows);
+				//var r = $("#towns tr:last");
+				///var r = $(this).parent().find('.myHidden').val(); 
+				var r = $("#towns td:last").find(".myHidden");				
+				$("#cntr").html(r.val());
+				//alert("DATA ROWS: " + $('#towns > tbody > tr').length + ", " + $('#towns > tr').length + ", " + $('#mytbody').children().length);				
+				
+				//$("#towns tbody:last").append("<tr><td>THREE</td><td>"+n+"</td><td>btn</td><tr>");
+				 
+				//var target_row = tbl.closest("tr").get(0); // this line did the trick
+			    //var target_row = $(this).closest("tr").get(0); // this line did the trick
+			    //var aPos = oTable.fnGetPosition(target_row); 
+		
+			    //oTable.fnDeleteRow(aPos);
+				//alert("ADDD");
+			});
+	    	
+			$("#btn2").bind( "click", function(event) {				
+				//$("#towns").find('td').remove();				
+				//$('#towns tbody').empty()
+				$('#towns tr').not(function(){if ($(this).has('th').length){return true}}).remove();
+				$("#cntr").html("None!");
+				//alert("DELETE ENDED OK");
+			});
+	    	
+	    	var elm = $("#tbl1");
+	    	$( "#btn1" ).click(function( event ) {
+				if ( elm.is(':hidden') ) {
+					elm.show();
+				} else { 
+					elm.hide("slow"); 
+				}
+			});
+	    });          
+	</script>
+	
+</head>
+</head>
+
+<body>
+	<h1>Test Crap</h1>
+	Number of rows: <span id="cntr">?</span>
+	
+	<div id="btns">
+		<input id="btn1" type="button" value="Show/Hide"/>
+		<input id="btn2" type="button" value="Remove All Rows"/>
+		<input id="btn3" type="button" value="AddRow"/>
+	</div>
+	<br/>
+	<div id="tbl1" style="display:block">
+		<table id="towns">
+			<tr><th>Name</th><th>Population</th><th scope="col">Edit</th></tr>
+			<!--tbody id="mytbody"-->
+			<tr class="tmp"><td>ONE</td><td>100</td><td>btn</td><tr>
+			<tr class="tmp"><td>TWO</td><td>200</td><td>btn</td><tr>
+			<!--/tbody-->
+		</table>		
+	</div>
+</body>
+</html>

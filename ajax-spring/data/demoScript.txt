@@ -1,0 +1,70 @@
+--DROP SCHEMA schema1 IF EXISTS;
+--CREATE SCHEMA schema1;
+
+ DROP TABLE schema1.user IF EXISTS;
+CREATE TABLE schema1.user( Id INTEGER PRIMARY KEY, FirstName VARCHAR(20), LastName VARCHAR(50));
+
+ INSERT INTO schema1.user  VALUES(1,'Julia','Peterson-Clancy') ;
+ INSERT INTO schema1.user  VALUES(2,'PAPA', 'JOHNS') ;
+ INSERT INTO schema1.user  VALUES(3,'Andrew', 'Mist') ;
+
+DROP TABLE schema1.address IF EXISTS;
+CREATE TABLE schema1.address (user_Id INTEGER,  line1 varchar(30),  line2 varchar(30),  line3 varchar(30));
+
+INSERT INTO schema1.address VALUES(1,'Louisville','234 MainStreet', 'KY') ;
+INSERT INTO schema1.address VALUES(2,'Louisville','Prospect semikola, Apt.1', 'KY') ;
+INSERT INTO schema1.address VALUES(3,'Fort Knox','Zelenaya', 'KY') ;
+
+-- County/Provance
+DROP TABLE schema1.country IF EXISTS;
+CREATE TABLE schema1.country (country_id integer primary key, name varchar(30) not null);
+INSERT into schema1.country VALUES (1, 'United States');
+INSERT into schema1.country VALUES (2, 'Russia');
+INSERT into schema1.country VALUES (3, 'India');
+
+DROP TABLE schema1.provance IF EXISTS;
+CREATE TABLE schema1.provance (country_id int, provance_id int, provance varchar(30) not null);
+
+INSERT into schema1.provance VALUES (1, 1 ,'Alabama');
+INSERT into schema1.provance VALUES (1, 2 ,'Washington');
+INSERT into schema1.provance VALUES (1, 3 ,'KY');
+
+INSERT into schema1.provance VALUES (2, 1 ,'Kostromskaya Oblast');
+INSERT into schema1.provance VALUES (2, 2 ,'Kaliningradskaya');
+INSERT into schema1.provance VALUES (2, 3 ,'Moskovskaya');
+
+INSERT into schema1.provance VALUES (3, 1 ,'Deli');
+INSERT into schema1.provance VALUES (3, 2 ,'Mombay');
+INSERT into schema1.provance VALUES (3, 3 ,'Pakistan?');
+INSERT into schema1.provance VALUES (3, 4 ,'Boombay');
+
+DROP TABLE schema1.town IF EXISTS;
+CREATE TABLE schema1.town (country_id int, provance_id int, town_id int, town_name varchar(30) not null, population int);
+INSERT into schema1.town VALUES (1, 1, 1, 'Alkatrac', 100);
+INSERT into schema1.town VALUES (1, 1, 2, 'Area 52', 200);
+
+INSERT into schema1.town VALUES (1, 2, 1, 'W Town 1', 50);
+INSERT into schema1.town VALUES (1, 2, 2, 'W Town 2', 150);
+INSERT into schema1.town VALUES (1, 2, 3, 'W Town 3', 2150);
+
+INSERT into schema1.town VALUES (1, 3, 1, 'KY 1', 10);
+INSERT into schema1.town VALUES (1, 3, 2, 'KY 2', 110);
+INSERT into schema1.town VALUES (1, 3, 3, 'KY 3', 310);
+
+INSERT into schema1.town VALUES (2, 1, 1, 'Kostroma', 4);
+INSERT into schema1.town VALUES (2, 1, 2, 'Kaluga', 24);
+
+INSERT into schema1.town VALUES (2, 2, 1, 'Kaliningrad', 24);
+INSERT into schema1.town VALUES (2, 2, 2, 'Sovetsk', 214);
+
+INSERT into schema1.town VALUES (2, 3, 1, 'Moskva', 1224);
+
+INSERT into schema1.town VALUES (3, 1, 1, 'Deli 1', 1);
+INSERT into schema1.town VALUES (3, 2, 1, 'Mombay 1', 11);
+INSERT into schema1.town VALUES (3, 3, 1, 'Pakista 1', 121);
+INSERT into schema1.town VALUES (3, 4, 1, 'Bomb 1', 34);
+
+select * from schema1.user u, schema1.address a where u.id =a.user_id;
+select * from schema1.country;
+
+

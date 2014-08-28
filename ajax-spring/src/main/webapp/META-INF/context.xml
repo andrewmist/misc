@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Context docBase="ajax-spring" path="/" antiResourceLocking="false" reloadable="true">
+	
+	<ResourceLink name="jdbc/DB1" global="jdbc/DB1" type="javax.sql.DataSource" description="LOCAL DB"/>
+	<Environment name="Setting1" value="This is whatever" type="java.lang.String" Description="This is a setting"/>
+	
+</Context>
