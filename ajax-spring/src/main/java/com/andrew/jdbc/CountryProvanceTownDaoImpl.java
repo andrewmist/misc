@@ -28,9 +28,9 @@ import org.springframework.transaction.support.TransactionTemplate;
 
 public class CountryProvanceTownDaoImpl implements CountryProvanceTownInterface {
 	private static Logger log = Logger.getLogger("CountryProvanceTownDaoImpl");
-	private JdbcTemplate jdbcTemplate = null;
-	private NamedParameterJdbcTemplate jdbcTemplate2 = null;
-	private TransactionTemplate transactionTemplate = null;
+	private JdbcTemplate jdbcTemplate;
+	private NamedParameterJdbcTemplate jdbcTemplate2;
+	private TransactionTemplate transactionTemplate;
 	private static String DIV = "_"; //am replace this w. JSON
 	private DataSource ds;
 	
