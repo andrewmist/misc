@@ -1,0 +1,374 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.svs.web.app</groupId>
+	<artifactId>b2bClientPortal</artifactId>
+	<version>1.1.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<name>b2bClientPortal</name>
+	<properties>
+		<buildDirectory>target/COPY-FINAL-WAR-HERE</buildDirectory>
+		
+		<!-- //am not sure why it's called 'ear-prefix' -->
+		<ear-prefix>b2bClientPortalWeb</ear-prefix>
+		<ear-suffix>Web</ear-suffix>
+
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<spring-framework.version>4.2.1.RELEASE</spring-framework.version>
+		<spring.security.version>4.0.2.RELEASE</spring.security.version>
+
+		<slf4j.version>1.7.10</slf4j.version>
+		<logback.version>1.0.13</logback.version>
+		<tiles.version>3.0.5</tiles.version>
+		<junit.version>4.11</junit.version>
+
+		<svs-b2b-security-bean.version>0.0.4-SNAPSHOT</svs-b2b-security-bean.version>
+		<wm-interceptor.version>0.0.1-SNAPSHOT</wm-interceptor.version>
+		<tiles-def-loader.version>1.0.0-RELEASE</tiles-def-loader.version>
+		
+		<wrm-signon.version>1.0.2-SNAPSHOT</wrm-signon.version>		
+		<wrm-acmeSkin.version>1.1.0-SNAPSHOT</wrm-acmeSkin.version>
+		<svs-core-file.version>1.1.0-SNAPSHOT</svs-core-file.version>
+		<wm-imageLoader.version>1.1.0-SNAPSHOT</wm-imageLoader.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.svs.modules</groupId>
+			<artifactId>tiles-def-loader</artifactId>
+			<version>${tiles-def-loader.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>jsp-api</artifactId>
+					<groupId>javax.servlet.jsp</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-web</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-core</artifactId>
+			<version>${tiles.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-jsp</artifactId>
+			<version>${tiles.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-extras</artifactId>
+			<version>${tiles.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>*</artifactId>
+					<groupId>*</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<version>2.3.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring-framework.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- //am project dependencies -->
+		<dependency>
+			<groupId>com.svs.soa</groupId>
+			<artifactId>svs-b2b-security-bean</artifactId>
+			<version>${svs-b2b-security-bean.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.svs.web.module</groupId>
+			<artifactId>wrm-signon</artifactId>
+			<version>${wrm-signon.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>jackson-jaxrs</artifactId>
+					<groupId>org.codehaus.jackson</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>svs-web-security</artifactId>
+					<groupId>com.svs.core</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jsp-api</artifactId>
+					<groupId>javax.servlet.jsp</groupId>
+				</exclusion>
+			</exclusions>
+			<scope>provided</scope>
+		</dependency>		
+		<dependency>
+			<groupId>com.svs.web.module</groupId>
+			<artifactId>wm-interceptor</artifactId>
+			<version>${wm-interceptor.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.svs.web.module</groupId>
+			<artifactId>wrm-acmeSkin</artifactId>
+			<version>${wrm-acmeSkin.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.svs.web.module</groupId>
+			<artifactId>wm-imageLoader</artifactId>
+			<version>${wm-imageLoader.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.svs.core</groupId>
+			<artifactId>svs-core-file</artifactId>
+			<version>${svs-core-file.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.svs.web.module</groupId>
+			<artifactId>wm-b2bConfig</artifactId>
+			<version>1.2.0-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- 
+		<dependency>
+			<groupId>com.svs.web.module</groupId>
+			<artifactId>wm-b2bAuthentication</artifactId>
+			<version>1.1.0-SNAPSHOT</version>
+		</dependency>
+		-->
+	</dependencies>
+	
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<excludeReactor>false</excludeReactor>
+					<allowSnapshots>true</allowSnapshots>
+					<includes>
+						<include>com.svs.core:*</include>
+					</includes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<packagingExcludes>META-INF/context.xml</packagingExcludes>
+					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+					<archive>
+						<manifestEntries>
+							<build-date>${maven.build.timestamp}</build-date>
+							<project-version>${project.artifactId}:${project.version}</project-version>
+						</manifestEntries>
+					</archive>
+
+					<webResources>
+          				<resource>
+          					<directory>src/main/app-resources</directory>
+          					<excludes>
+		                		<exclude>**/application.xml</exclude>
+		              		</excludes>
+          				</resource>
+        			</webResources>
+				</configuration>
+			</plugin>
+
+			<!-- ==================================================== -->
+			<!-- This builds the ear file and packages resources -->
+			<!-- ==================================================== -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.3</version>
+				<executions>
+					<execution>
+						<id>assembly:package</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<finalName>${project.artifactId}${ear-suffix}</finalName>													<finalName>${project.artifactId}${ear-suffix}</finalName>							
+							<appendAssemblyId>false</appendAssemblyId>
+							<archiverConfig>
+								<appxml>${project.build.directory}/application.xml</appxml>
+							</archiverConfig>
+							<descriptors>
+								<descriptor>src/main/assembly/descriptor.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+					<!-- 
+					<execution>
+						<id>assembly:package2</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<finalName>${project.artifactId}-${project.version}</finalName>
+							<descriptors>
+								<descriptor>src/main/assembly/resources-assembly.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+					 -->
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>com.google.code.maven-replacer-plugin</groupId>
+				<artifactId>replacer</artifactId>
+				<version>1.5.3</version>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>replace</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<file>src/main/app-resources/application.xml</file>
+					<outputFile>${project.build.directory}/application.xml</outputFile>
+					<replacements>
+						<replacement>
+							<token>@artifactId</token>
+							<value>${project.artifactId}</value>
+						</replacement>
+						<replacement>
+							<token>@versionId</token>
+							<value>${project.version}</value>
+						</replacement>
+						<replacement>
+							<token>@ear-prefix</token>
+							<value>${ear-prefix}</value>
+						</replacement>
+					</replacements>
+				</configuration>
+			</plugin>
+			
+			<!-- //am 
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<id>copy-resources-global-lib</id>
+						<phase>install</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${buildDirectory}</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${project.build.directory}</directory>
+									<filtering>false</filtering>
+									<includes>
+										<include>${project.artifactId}.war</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			-->
+		</plugins>		
+	</build>
+	
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>Internal Releases</name>
+			<url>http://pbvlsbs2:8080/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Internal snapshots</name>
+			<url>http://pbvlsbs2:8080/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>

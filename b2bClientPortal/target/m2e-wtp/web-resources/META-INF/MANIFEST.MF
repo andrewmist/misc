@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Build-Jdk: 1.7.0
+project-version: b2bClientPortal:1.1.0-SNAPSHOT
+Built-By: amistratov
+Created-By: Maven Integration for Eclipse
+build-date: 
+

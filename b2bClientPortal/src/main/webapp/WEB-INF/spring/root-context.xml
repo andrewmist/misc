@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<import resource="classpath*:/META-INF/spring/root*module.xml"/>
+	
+	<!-- //am Tomcat specific,so, not in use yet -->
+	<util:properties id="b2bClientPortal" location="file:${catalina.home}/webapps/b2bClientPortal/META-INF/maven/com.svs.web.app/b2bClientPortal/pom.properties" />
+	<!--
+	<util:properties id="b2bClientPortal" location="file:${artifactId}/webapps/b2bClientPortal/META-INF/maven/com.svs.web.app/b2bClientPortal/pom.properties" />
+	-->	
+</beans>

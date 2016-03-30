@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<Context path="" docBase="/b2bClientPortal" reloadable="true">
+<!-- //am Please adjust path according to your local system. Note: this context.xml file is EXCLUDED by maven -->
+    <Loader className="org.apache.catalina.loader.VirtualWebappLoader"
+          virtualClasspath="/deployment/global/config;
+          /deployment/config/b2bClientPortal;
+          /deployment/global/lib/archetype-2.x/*.jar;
+		  /deployment/global/lib/svs-web-api-2.x/*.jar;          
+          /deployment/global/lib/*.jar;
+          /_modules_common/*.jar;
+          /deployment/global/modules/wrm-acmeSkin/*.jar;
+          /deployment/global/modules/wm-b2bConfig/*.jar;
+          /b2bClientPortal/*.jar;
+          /b2bClientPortal/image-loader/*.jar
+          "/>
+</Context>
